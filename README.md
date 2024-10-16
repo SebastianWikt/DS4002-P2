@@ -14,7 +14,7 @@ DS4002-PI
   - IDB_10-07-24 (1).csv
   - Cleaned dataset with values entered for nas: IDB_10-07-24_clean.csv
 - Output
-    - MAKE PDF: DS 4002 - Project 2 Output Graphs.pdf
+    - Images of graphs 
 - Scripts
     - MIL2-P2.Rmd
     - MIL2-P2.Pdf
