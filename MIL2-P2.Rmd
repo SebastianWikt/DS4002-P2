@@ -7,12 +7,14 @@ output: pdf_document
 
 
 ```{r}
+#load in original dataset 
 dataset<-read.csv("C:/Users/young/OneDrive/Desktop/DS 4002/IDB_10-07-2024 (1).csv")
 head(data)
 ```
 
 
 ```{r}
+#load needed package 
 library(ggplot2)
 #filter the dataset for the years 2019-2021 using the 'Region' column
 filtered_data <- dataset[dataset$Year %in% c(2019, 2020, 2021), ]
@@ -28,6 +30,8 @@ ggplot(filtered_data, aes(x=Year, y=Population, color=Name, group=Name)) +
   scale_x_continuous(breaks=c(2019, 2020, 2021)) +
   theme_minimal() +
   theme(axis.text.x=element_text(angle=45, hjust=1))
+
+#save the graph as image
 ggsave("population_trends_2019-2021.png", width = 10, height = 6)
 ```
 
@@ -42,15 +46,14 @@ ggplot(filtered_data, aes(x=Year, y=`Net.Migration.Rate`, color=Name, group=Name
        color="Country") +
   scale_x_continuous(breaks=c(2019, 2020, 2021)) +
   theme_minimal()
+
+#save the graph as image
 ggsave("net_migration_rate_2019-2021.png", width = 10, height = 6)
 ```
 
 
-* migration rate, life expectancy, and fertility rate all compared to the death rates 
-- scatterplot and line of best fit 
-
-Clean data
 ```{r}
+#clean the data. Read in the dataset with values entered for nas
 clean_data<-read.csv("C:/Users/young/OneDrive/Desktop/DS 4002/IDB_10-07-2024_clean.csv")
 filtered_data_clean<- clean_data[clean_data$Year %in% c(2019, 2020, 2021), ]
 head(filtered_data_clean)
@@ -58,44 +61,47 @@ head(filtered_data_clean)
 
 
 ```{r}
-#Net Migration Rate vs Crude Death Rate
+#scatterplot on: Net Migration Rate vs Crude Death Rate
 ggplot(clean_data, aes(x=`Crude.Death.Rate`, y=`Net.Migration.Rate`, color=Name)) +
   geom_point(size=3) +  
-  geom_smooth(method="lm", se=FALSE, color="black", aes(group=Name)) + 
+  geom_smooth(method="lm", se=FALSE, color="black", aes(group=Name)) + #adds line of best fit
   labs(title= "Net Migration Rate vs Crude Death Rate",
        x= "Crude Death Rate",
        y= "Net Migration Rate",
        color= "Country") +
   theme_minimal()
 
+#save the graph as image
 ggsave("net_migration_vs_crude_death_rate.png", width= 10, height = 6)
 ```
 
 ```{r}
-#Life Expectancy vs Crude Death Rate
+#scatterplot on: Life Expectancy vs Crude Death Rate
 ggplot(clean_data, aes(x=`Crude.Death.Rate`, y= `Life.Expectancy.at.Birth..Both.Sexes`,color=Name)) +
   geom_point(size = 3) +  
-  geom_smooth(method="lm", se=FALSE, color="black",aes(group=Name)) +  
+  geom_smooth(method="lm", se=FALSE, color="black",aes(group=Name)) +   #adds line of best fit
   labs(title = "Life Expectancy vs Crude Death Rate",
        x= "Crude Death Rate",
        y= "Life Expectancy",
        color= "Country") +
   theme_minimal()
 
+#save the graph as image
 ggsave("life_expectancy_vs_crude_death_rate.png", width=10, height= 6)
 ```
 
 ```{r}
-#Total Fertility Rate vs Crude Death Rate
+#scatterplot on: Total Fertility Rate vs Crude Death Rate
 ggplot(clean_data, aes(x=`Crude.Death.Rate`, y=`Total.Fertility.Rate`, color=Name)) +
   geom_point(size=3) + 
-  geom_smooth(method="lm", se=FALSE, color="black", aes(group=Name)) +  
+  geom_smooth(method="lm", se=FALSE, color="black", aes(group=Name)) +   #adds line of best fit
   labs(title = "Fertility Rate vs Crude Death Rate",
        x= "Crude Death Rate",
        y= "Fertility Rate",
        color= "Country") +
   theme_minimal()
 
+#save the graph as image
 ggsave("fertility_rate_vs_crude_death_rate.png", width=10, height=6)
 ```
 
