@@ -3,16 +3,16 @@
 Research Question: What is the correlation coefficient between characteristics and key words such as focused, unique, realistic, inspiring, values, etc. and a business school’s 2020 ranking and average salary after graduation?
 
 ## Software and Platform
-- All code and figures were generated using R.
+- All code and figures were generated using R
 - Install ggplot to create graphs
+- Install tidyr to clean the dataet in R
 
 ## Map of Documentation
 DS4002-PI
 - LICENSE.md
 - README.md
 - Data
-  - IDB_10-07-24 (1).csv
-  - Cleaned dataset with values entered for nas: IDB_10-07-24_clean.csv
+  - IDB_10-21-24.csv
 - Output
     - Images of graphs 
 - Scripts
