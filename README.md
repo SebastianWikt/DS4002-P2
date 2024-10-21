@@ -27,6 +27,8 @@ Running the code in the scripts folder will generate the plots and analysis that
 
 - Install the necessary packages in R
 - Clone this repository for access to the dataset (both cleaned data and original dataset).
+- Set the working directory in the R file as the location where you downloaded the .rmd file.
+- Download the data from the Data folder into the same working directory from the previous step.
 - Read in and clean the data.
 - Run the defined functions to reproduce data and graphs.
 - Determine the correlation between the variables highlighted in the code from the dataset
