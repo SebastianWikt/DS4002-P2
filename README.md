@@ -23,7 +23,7 @@ DS4002-PI
 [2] Tomov L, Chervenkov L, Miteva DG, Batselova H, Velikova T. “Applications of time series analysis in epidemiology: Literature review and our experience during COVID-19 pandemic.” World J Clin Cases. 2023 Oct 16;11(29):6974-6983. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10631421/ (accessed Oct. 9, 2024).
 
 ## Instructions for reproducing results
-Running the ipynb notebook in the scripts folder will generate the plots and analysis that we used for our inferences in this project. 
+Running the code in the scripts folder will generate the plots and analysis that we used for our inferences in this project. 
 
 - Install the necessary packages in R
 - Clone this repository for access to the dataset (both cleaned data and original dataset).
