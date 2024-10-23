@@ -8,8 +8,8 @@ output: pdf_document
 
 ```{r}
 #load in original dataset 
-dataset<-read.csv("C:/Users/young/OneDrive/Desktop/DS 4002/IDB_10-21-2024.csv")
-head(dataset)
+dataset<-read.csv("C:/Users/rge3gq/OneDrive - University of Virginia/Documents/DS 4002/IDB_10-21-2024.csv")
+dataset <- dataset[!is.na(dataset$Year), ]
 ```
 
 
@@ -27,21 +27,26 @@ head(clean_df)
 ```{r}
 #load needed package 
 library(ggplot2)
-
+clean_df$Population <- as.numeric(gsub(",", "", clean_df$Population))
+pop_df <- clean_df
+pop_df <- pop_df[pop_df$Name != "Brazil", ]
+pop_df <- pop_df[pop_df$Name != "China", ]
+pop_df <- pop_df[pop_df$Name != "India", ]
 #time series plot on pop 
-ggplot(clean_df, aes(x=Year, y=Population, color=Name, group=Name)) +
+ggplot(pop_df, aes(x=Year, y=Population, color=Name, group=Name)) +
   geom_line(size=1.2) +
   geom_point(size=3) +
   labs(title="Population Trends from 2000-2024",
        x="Year",
        y="Population",
        color="Country") +
-  scale_x_continuous(breaks=1) +
+scale_x_continuous(breaks=seq(2000, 2024, by=1),
+                     labels = scales::number_format(accuracy = 1)) +  
   theme_minimal() +
   theme(axis.text.x=element_text(angle=45, hjust=1))
 
 #save the graph as image
-ggsave("population_trends.png", width = 10, height = 6)
+ggsave("population_trends.png", width = 10, height = 20)
 ```
 
 
@@ -55,7 +60,25 @@ ggplot(clean_df, aes(x=Year, y=`Net.Migration.Rate`, color=Name, group=Name)) +
        x="Year",
        y="Net Migration Rate",
        color="Country") +
-  scale_x_continuous(breaks=1) +
+  scale_x_continuous(breaks=seq(2000, 2024, by=2),
+                     labels = scales::number_format(accuracy = 1)) +
+  theme_minimal()
+
+#save the graph as image
+ggsave("net_migration_rate.png", width = 10, height = 6)
+```
+```{r}
+#create the scatter plot for Net Migration Rate on Year
+selected_countries <- clean_df[clean_df$Name %in% c("United States", "Congo (Kinshasa)", "India", "Ethiopia"),]
+ggplot(selected_countries, aes(x=Year, y=`Net.Migration.Rate`, color=Name, group=Name)) +
+  geom_point(size=3) +
+  geom_line(size=1.2) +
+  labs(title ="Net Migration Rate Years (2000-2024)",
+       x="Year",
+       y="Net Migration Rate",
+       color="Country") +
+  scale_x_continuous(breaks=seq(2000, 2024, by=2),
+                     labels = scales::number_format(accuracy = 1)) +
   theme_minimal()
 
 #save the graph as image
@@ -65,7 +88,7 @@ ggsave("net_migration_rate.png", width = 10, height = 6)
 
 ```{r}
 #clean the data. Read in the dataset with values entered for nas
-clean_data<-read.csv("C:/Users/young/OneDrive/Desktop/DS 4002/IDB_10-07-2024_clean.csv")
+clean_data<-read.csv("C:/Users/rge3gq/OneDrive - University of Virginia/Documents/DS 4002/IDB_10-21-2024.csvd")
 filtered_data_clean<- clean_data[clean_data$Year %in% c(2019, 2020, 2021), ]
 head(filtered_data_clean)
 ```
@@ -75,7 +98,7 @@ head(filtered_data_clean)
 
 ```{r}
 #scatterplot on: Net Migration Rate vs Crude Death Rate
-ggplot(clean_data, aes(x=`Crude.Death.Rate`, y=`Net.Migration.Rate`, color=Name)) +
+ggplot(clean_df, aes(x=`Crude.Death.Rate`, y=`Net.Migration.Rate`, color=Name)) +
   geom_point(size=3) +  
   geom_smooth(method="lm", se=FALSE, color="black", aes(group=Name)) + #adds line of best fit
   labs(title= "Net Migration Rate vs Crude Death Rate",
@@ -90,7 +113,7 @@ ggsave("net_migration_vs_crude_death_rate.png", width= 10, height = 6)
 
 ```{r}
 #scatterplot on: Life Expectancy vs Crude Death Rate
-ggplot(clean_data, aes(x=`Crude.Death.Rate`, y= `Life.Expectancy.at.Birth..Both.Sexes`,color=Name)) +
+ggplot(clean_df, aes(x=`Crude.Death.Rate`, y= `Life.Expectancy.at.Birth..Both.Sexes`,color=Name)) +
   geom_point(size = 3) +  
   geom_smooth(method="lm", se=FALSE, color="black",aes(group=Name)) +   #adds line of best fit
   labs(title = "Life Expectancy vs Crude Death Rate",
@@ -105,7 +128,7 @@ ggsave("life_expectancy_vs_crude_death_rate.png", width=10, height= 6)
 
 ```{r}
 #scatterplot on: Total Fertility Rate vs Crude Death Rate
-ggplot(clean_data, aes(x=`Crude.Death.Rate`, y=`Total.Fertility.Rate`, color=Name)) +
+ggplot(clean_df, aes(x=`Crude.Death.Rate`, y=`Total.Fertility.Rate`, color=Name)) +
   geom_point(size=3) + 
   geom_smooth(method="lm", se=FALSE, color="black", aes(group=Name)) +   #adds line of best fit
   labs(title = "Fertility Rate vs Crude Death Rate",
