@@ -1,6 +1,6 @@
-# DS4002-P2: Death Rates Over Time
+# DS4002-P2: COVID-19's Effect on Demographics Over Time
 ### Group 5: Neha Channamraju, Sebastian Wiktorowicz (leader), Catherine Young
-Research Question: What is the correlation coefficient between characteristics and key words such as focused, unique, realistic, inspiring, values, etc. and a business school’s 2020 ranking and average salary after graduation?
+Research Question: Does the correlation between factors like the migration rate, life expectancy, and fertility rate compared to death rates over time change point during the time of the COVID-19 pandemic (2019-2021)?
 
 ## Software and Platform
 - All code and figures were generated using R
