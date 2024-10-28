@@ -28,7 +28,7 @@ DS4002-PI
 ## Instructions for reproducing results
 Running the code in the scripts folder will generate the plots and analysis that we used for our inferences in this project. 
 
-# Exploratory correlational graphs
+### Exploratory correlational graphs
 - Install the necessary packages in R
 - Clone this repository for access to the dataset (both cleaned data and original dataset).
 - Set the working directory in the R file as the location where you downloaded the .rmd file.
@@ -37,7 +37,7 @@ Running the code in the scripts folder will generate the plots and analysis that
 - Run the defined functions to reproduce data and graphs.
 - Determine the correlation between the variables highlighted in the code from the dataset
 
-# Change point analysis graphs
+### Change point analysis graphs
 - Install ruptures package in Colab and follow the code to produce the change point graphs
 - Window size can be adjusted to the minimum value with no errors/gaps in the graph
 - x and y can be adjusted to look for different correlations from the variables in the census dataset
